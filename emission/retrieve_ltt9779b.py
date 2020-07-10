@@ -38,11 +38,21 @@ sys.stdout.flush()
 ################################################################################
 ################################################################################
 
+<<<<<<< HEAD
 retrieval_name = 'test100_tess_LTT9779b_%s/TESS_'
 absolute_path = '' # end with forward slash!
 observation_files = {}
 #observation_files['IRAC'] = './observations/toi193_spitzer-tess_flux_v2.dat'
 observation_files['TESS'] = './observations/toi193_tess_flux_v3.dat'
+=======
+#retrieval_name = 'test50_nirspec_noiseless_LTT9779b_%s/nirspec_'
+retrieval_name = 'nirspec_250_LTT9779b_%s/nirspec_'
+
+absolute_path = '' # end with forward slash!
+observation_files = {}
+#observation_files['IRAC'] = './observations/toi193_spitzer-tess_flux_v2.dat'
+#observation_files['TESS'] = './observations/toi193_tess_flux_v3.dat'
+observation_files['nirspec'] = './observations/ltt9779_hih2o_nirspecG395M_noiseless.txt'
 #observation_files['HSTWFC3'] = 'toi193_wfc3g141-sim_hiH2O_10bin.dat'
 #observation_files['HSTWFC3'] = 'toi193_wfc3g141-sim_weaker_10bin.dat'
 
@@ -50,7 +60,9 @@ species = [ 'H2O',  'CO2','TiO', 'VO','Na','K']
 #chemMode = 'free' # abundance of each molecule/atom is a free param.
 chemMode = 'selfconsistent' # use "poor Man's chemistry" file as free params; 
                             # only free params are [Fe/H] and C/O. 
-n_live_points = 100   # for MultiNest; larger is more complete, but takes longer.
+                            
+n_live_points = 250   # for MultiNest; larger is more complete, but takes longer.
+
 resume = True
 
 if chemMode=='free':
@@ -68,7 +80,7 @@ if plotting:
     import pylab as plt
 
 # Wavelength range of observations, fixed parameters that will not be retrieved
-WLEN = [0.6, 5.1] #[0.54, 5.1]
+WLEN = [0.6, 6.0] #[0.54, 5.1]
 WLEN_plot = [0.5, 12]
 LOG_G =  3.11 # logg of PLANET, per Jenkins
 R_pl =   4.72*nc.r_earth # per Jenkins

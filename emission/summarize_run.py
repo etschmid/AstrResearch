@@ -23,10 +23,12 @@ observation_files = {}
 nmc = 100
 
 #LTT9779b:  
+observation_files['nirspec'] = './observations/ltt9779_hih2o_nirspecG395M_noiseless.txt'
 #observation_files['IRAC'] = 'observations/toi193_spitzer-tess_flux_v2.dat'
-observation_files['TESS'] = './observations/toi193_tess_flux_v3.dat'
-runname_base = 'test100_tess_LTT9779b_'
-instrument_type = 'TESS'
+#observation_files['TESS'] = './observations/toi193_tess_flux_v3.dat'
+runname_base = 'nirspec_250_LTT9779b_'
+instrument_type = 'nirspec'
+
 
 
 
