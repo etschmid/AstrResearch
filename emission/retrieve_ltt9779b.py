@@ -38,14 +38,7 @@ sys.stdout.flush()
 ################################################################################
 ################################################################################
 
-<<<<<<< HEAD
-retrieval_name = 'test100_tess_LTT9779b_%s/TESS_'
-absolute_path = '' # end with forward slash!
-observation_files = {}
-#observation_files['IRAC'] = './observations/toi193_spitzer-tess_flux_v2.dat'
-observation_files['TESS'] = './observations/toi193_tess_flux_v3.dat'
-=======
-#retrieval_name = 'test50_nirspec_noiseless_LTT9779b_%s/nirspec_'
+
 retrieval_name = 'nirspec_250_LTT9779b_%s/nirspec_'
 
 absolute_path = '' # end with forward slash!
