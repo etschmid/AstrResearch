@@ -39,20 +39,21 @@ sys.stdout.flush()
 ################################################################################
 
 
-retrieval_name = 'TEST2_nirspec_25_LTT9779b_%s/nirspec_'
+retrieval_name = 'nirspec_noiseless_speciesTEST25__%s/nirspec_'
 
 absolute_path = '' # end with forward slash!
 observation_files = {}
 #observation_files['IRAC'] = './observations/toi193_spitzer-tess_flux_v2.dat'
 #observation_files['TESS'] = './observations/toi193_tess_flux_v3.dat'
-#observation_files['nirspec'] = './observations/ltt9779_hih2o_nirspecG395M_noiseless.txt'
-observation_files['nirspec'] = './observations/ltt9779_hih2o_nirspecG395M_1tran.txt'
+observation_files['nirspec'] = './observations/ltt9779_hih2o_nirspecG395M_noiseless.txt'
+#observation_files['nirspec'] = './observations/ltt9779_hih2o_nirspecG395M_1tran.txt'
 #observation_files['HSTWFC3'] = 'toi193_wfc3g141-sim_hiH2O_10bin.dat'
 #observation_files['HSTWFC3'] = 'toi193_wfc3g141-sim_weaker_10bin.dat'
 
-species = ['H2O',  'CO2','TiO', 'VO','Na','K']
-#chemMode = 'free' # abundance of each molecule/atom is a free param.
-chemMode = 'selfconsistent' # use "poor Man's chemistry" file as free params; 
+#species = ['H2O',  'CO2','TiO', 'VO','Na','K']
+species = ['H2O',  'CO2', 'CO_all_iso']
+chemMode = 'free' # abundance of each molecule/atom is a free param.
+#chemMode = 'selfconsistent' # use "poor Man's chemistry" file as free params; 
                             # only free params are [Fe/H] and C/O. 
                             
 n_live_points = 25   # for MultiNest; larger is more complete, but takes longer.
