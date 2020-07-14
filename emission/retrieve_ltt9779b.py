@@ -39,7 +39,7 @@ sys.stdout.flush()
 ################################################################################
 
 
-retrieval_name = 'nirspec_noiseless_speciesTEST25__%s/nirspec_'
+retrieval_name = 'nirspec_noiseless_speciesTEST25_WRange_%s/nirspec_'
 
 absolute_path = '' # end with forward slash!
 observation_files = {}
@@ -75,7 +75,7 @@ if plotting:
     import pylab as plt
 
 # Wavelength range of observations, fixed parameters that will not be retrieved
-WLEN = [0.6, 6.0] #[0.54, 5.1]
+WLEN = [2.8, 6.0] #[0.54, 5.1]
 WLEN_plot = [0.5, 12]
 LOG_G =  3.11 # logg of PLANET, per Jenkins
 R_pl =   4.72*nc.r_earth # per Jenkins
