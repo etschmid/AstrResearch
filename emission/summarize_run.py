@@ -23,11 +23,11 @@ observation_files = {}
 nmc = 100
 
 #LTT9779b:  
-#observation_files['nirspec'] = './observations/ltt9779_hih2o_nirspecG395M_noiseless.txt'
-observation_files['nirspec'] = './observations/ltt9779_hih2o_nirspecG395M_1tran.txt'
+observation_files['nirspec'] = './observations/ltt9779_hih2o_nirspecG395M_noiseless.txt'
+#observation_files['nirspec'] = './observations/ltt9779_hih2o_nirspecG395M_1tran.txt'
 #observation_files['IRAC'] = 'observations/toi193_spitzer-tess_flux_v2.dat'
 #observation_files['TESS'] = './observations/toi193_tess_flux_v3.dat'
-runname_base = 'TEST2_nirspec_25_LTT9779b_'
+runname_base = 'nirspec_noiseless_speciesTEST25_WRange_'
 instrument_type = 'nirspec'
 
 
@@ -36,8 +36,9 @@ LOG_G =  3.11
 R_pl =   4.72*nc.r_earth # per Jenkins
 R_star = 0.949*nc.r_sun # per TIC v8
 T_star = 5443.
-chemMode = 'selfconsistent' #'selfconsistent' # free
-species = ['H2O',  'CO2','TiO', 'VO','Na','K'] #['CO_all_iso']
+chemMode = 'free' #'selfconsistent' # free
+#species = ['H2O',  'CO2','TiO', 'VO','Na','K'] #['CO_all_iso']
+species = ['H2O',  'CO2', 'CO_all_iso']
 
 if chemMode=='free':
     print('free chem')
@@ -312,6 +313,8 @@ def loglike(cube, ndim, nparams, plotting=False, retbinspec=False, retfullspec=F
 #     print('log(L) = ', log_likelihood)
 #     return log_likelihood
 
+print("LINE 316 \n"*10)
+
 def process_tp_from_samples(samps):
     temps = []
     for ii in range(len(samps)):
@@ -332,6 +335,8 @@ def process_tp_from_samples(samps):
     onesighi = sorttemps[int(.84*len(samps))]
     return p, medtemps, onesiglo, onesighi, temps 
 
+print("LINE 338 \n"*10)
+
 import os
 os.system('ls %s/*_post_equal_weights.dat > tmp' % runname )
 f = open('tmp')
@@ -344,6 +349,9 @@ best_ind = np.argmax(samples[:,-1])
 best = samples[best_ind,:-1]
 print('best log-like', samples[best_ind,-1])
 print('Parameters, ', best)
+
+print("LINE 353 \n"*10)
+
 
 w, spec = loglike(best, 0., 0., retfullspec=True)
 binspec = np.concatenate([rgw.rebin_give_width(w, spec, data_wlen[instrument], data_wlen_bins[instrument]) for instrument in data_wlen.keys()])
@@ -359,6 +367,7 @@ for i in range(nmc):
     mc_spec[i] = loglike(sample, 0., 0., retfullspec=True)[1]
     mc_binspec[i] = np.concatenate([rgw.rebin_give_width(w, mc_spec[i], data_wlen[instrument], data_wlen_bins[instrument]) for instrument in data_wlen.keys()])
 
+print("LINE 370 \n"*10)
 
 best_chisq = (((binspec - obs) / eobs)**2).sum()
 mc_chisq = (((mc_binspec - obs) / eobs)**2).sum(1)
