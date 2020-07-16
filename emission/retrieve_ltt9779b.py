@@ -39,13 +39,14 @@ sys.stdout.flush()
 ################################################################################
 
 
-retrieval_name = 'nirspec_noiseless_speciesTEST25_WRange_%s/nirspec_'
+retrieval_name = 'niriss_Test_%s/niriss_'
 
 absolute_path = '' # end with forward slash!
 observation_files = {}
 #observation_files['IRAC'] = './observations/toi193_spitzer-tess_flux_v2.dat'
 #observation_files['TESS'] = './observations/toi193_tess_flux_v3.dat'
-observation_files['nirspec'] = './observations/ltt9779_hih2o_nirspecG395M_noiseless.txt'
+#observation_files['nirspec'] = './observations/ltt9779_hih2o_nirspecG395M_noiseless.txt'
+observation_files['niriss'] = './observations/ltt9779_hih2o_jwst_niriss-2eclipses_4pRT.csv'
 #observation_files['nirspec'] = './observations/ltt9779_hih2o_nirspecG395M_1tran.txt'
 #observation_files['HSTWFC3'] = 'toi193_wfc3g141-sim_hiH2O_10bin.dat'
 #observation_files['HSTWFC3'] = 'toi193_wfc3g141-sim_weaker_10bin.dat'
@@ -75,7 +76,8 @@ if plotting:
     import pylab as plt
 
 # Wavelength range of observations, fixed parameters that will not be retrieved
-WLEN = [2.8, 6.0] #[0.54, 5.1]
+#WLEN = [2.8, 6.0] #[0.54, 5.1]
+WLEN = [0.8, 2.9]
 WLEN_plot = [0.5, 12]
 LOG_G =  3.11 # logg of PLANET, per Jenkins
 R_pl =   4.72*nc.r_earth # per Jenkins
