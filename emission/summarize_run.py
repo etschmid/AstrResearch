@@ -28,7 +28,7 @@ observation_files['niriss'] = './observations/ltt9779_hih2o_jwst_niriss-2eclipse
 #observation_files['nirspec'] = './observations/ltt9779_hih2o_nirspecG395M_1tran.txt'
 #observation_files['IRAC'] = 'observations/toi193_spitzer-tess_flux_v2.dat'
 #observation_files['TESS'] = './observations/toi193_tess_flux_v3.dat'
-runname_base = 'niriss_Test_'
+runname_base = 'niriss_250_'
 instrument_type = 'niriss'
 
 
@@ -362,19 +362,19 @@ print("LINE 359 \n"*10)
 mc_spec = np.zeros((nmc, spec.size), dtype=float)
 mc_binspec = np.zeros((nmc, wobs.size), dtype=float)
 for i in range(nmc):
-    print("0")
+    #print("0")
     index = int(np.random.uniform()*len(samples))
-    print("1")
+    #print("1")
     while (samples[index, -1])>np.nanmedian(samples[:,-1]): 
         #print("2")
         index = int(np.random.uniform()*len(samples))
         #print(index)
         #print("3")
         #print(3*wobs.size)
-        print(samples[index, -1]*-2)
-    print("4")
+        #print(samples[index, -1]*-2)
+    #print("4")
     sample = samples[index,:-1]
-    print("5")
+    #print("5")
     print(i, ' T', sample[0])
     mc_spec[i] = loglike(sample, 0., 0., retfullspec=True)[1]
     mc_binspec[i] = np.concatenate([rgw.rebin_give_width(w, mc_spec[i], data_wlen[instrument], data_wlen_bins[instrument]) for instrument in data_wlen.keys()])
