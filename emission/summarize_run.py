@@ -23,12 +23,13 @@ observation_files = {}
 nmc = 100
 
 #LTT9779b:  
-observation_files['nirspec'] = './observations/ltt9779_hih2o_nirspecG395M_noiseless.txt'
+#observation_files['nirspec'] = './observations/ltt9779_hih2o_nirspecG395M_noiseless.txt'
+observation_files['niriss'] = './observations/ltt9779_hih2o_jwst_niriss-2eclipses_4pRT.csv'
 #observation_files['nirspec'] = './observations/ltt9779_hih2o_nirspecG395M_1tran.txt'
 #observation_files['IRAC'] = 'observations/toi193_spitzer-tess_flux_v2.dat'
 #observation_files['TESS'] = './observations/toi193_tess_flux_v3.dat'
-runname_base = 'nirspec_noiseless_speciesTEST25_WRange_'
-instrument_type = 'nirspec'
+runname_base = 'niriss_Test_'
+instrument_type = 'niriss'
 
 
 

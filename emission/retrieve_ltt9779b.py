@@ -39,7 +39,7 @@ sys.stdout.flush()
 ################################################################################
 
 
-retrieval_name = 'niriss_Test_%s/niriss_'
+retrieval_name = 'niriss_250_%s/niriss_'
 
 absolute_path = '' # end with forward slash!
 observation_files = {}
@@ -57,7 +57,7 @@ chemMode = 'free' # abundance of each molecule/atom is a free param.
 #chemMode = 'selfconsistent' # use "poor Man's chemistry" file as free params; 
                             # only free params are [Fe/H] and C/O. 
                             
-n_live_points = 25   # for MultiNest; larger is more complete, but takes longer.
+n_live_points = 250   # for MultiNest; larger is more complete, but takes longer.
 
 resume = True
 
