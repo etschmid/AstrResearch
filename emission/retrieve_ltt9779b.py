@@ -39,7 +39,7 @@ sys.stdout.flush()
 ################################################################################
 
 
-retrieval_name = 'niriss_250_%s/niriss_'
+retrieval_name = 'niriss_nirspec_300_%s/niriss_nirspec_'
 
 absolute_path = '' # end with forward slash!
 observation_files = {}
@@ -47,7 +47,7 @@ observation_files = {}
 #observation_files['TESS'] = './observations/toi193_tess_flux_v3.dat'
 #observation_files['nirspec'] = './observations/ltt9779_hih2o_nirspecG395M_noiseless.txt'
 observation_files['niriss'] = './observations/ltt9779_hih2o_jwst_niriss-2eclipses_4pRT.csv'
-#observation_files['nirspec'] = './observations/ltt9779_hih2o_nirspecG395M_1tran.txt'
+observation_files['nirspec'] = './observations/ltt9779_hih2o_nirspecG395M_1tran.txt'
 #observation_files['HSTWFC3'] = 'toi193_wfc3g141-sim_hiH2O_10bin.dat'
 #observation_files['HSTWFC3'] = 'toi193_wfc3g141-sim_weaker_10bin.dat'
 
@@ -57,7 +57,7 @@ chemMode = 'free' # abundance of each molecule/atom is a free param.
 #chemMode = 'selfconsistent' # use "poor Man's chemistry" file as free params; 
                             # only free params are [Fe/H] and C/O. 
                             
-n_live_points = 250   # for MultiNest; larger is more complete, but takes longer.
+n_live_points = 300   # for MultiNest; larger is more complete, but takes longer.
 
 resume = True
 
@@ -77,7 +77,8 @@ if plotting:
 
 # Wavelength range of observations, fixed parameters that will not be retrieved
 #WLEN = [2.8, 6.0] #[0.54, 5.1]
-WLEN = [0.8, 2.9]
+#WLEN = [0.8, 2.9]
+WLEN = [0.8, 6.0]
 WLEN_plot = [0.5, 12]
 LOG_G =  3.11 # logg of PLANET, per Jenkins
 R_pl =   4.72*nc.r_earth # per Jenkins
