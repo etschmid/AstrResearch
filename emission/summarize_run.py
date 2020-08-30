@@ -16,6 +16,21 @@ import mmr2vmr
 plotting = True
 save_obs = False
 
+plot_legend = True #Plots legend for thermal profile. Will become cluttered if large num of obs points. 
+
+## Spectrum Summary XY Axis ## Automatically set axis limits if true. 
+X_AutoRange = True
+Y_AutoRange = False
+
+X_ObsRange = False
+
+xmin = 0      # Define axis limits here if autorange set to false. 
+xmax = 12
+ymin = 0
+ymax = 1000
+#################################
+
+
 if plotting:
     import pylab as plt
 observation_files = {}
@@ -24,12 +39,12 @@ nmc = 100
 
 #LTT9779b:  
 #observation_files['nirspec'] = './observations/ltt9779_hih2o_nirspecG395M_noiseless.txt'
-observation_files['niriss'] = './observations/ltt9779_hih2o_jwst_niriss-2eclipses_4pRT.csv'
+#observation_files['niriss'] = './observations/ltt9779_hih2o_jwst_niriss-2eclipses_4pRT.csv'
 #observation_files['nirspec'] = './observations/ltt9779_hih2o_nirspecG395M_1tran.txt'
-#observation_files['IRAC'] = 'observations/toi193_spitzer-tess_flux_v2.dat'
-#observation_files['TESS'] = './observations/toi193_tess_flux_v3.dat'
-runname_base = 'niriss_250_'
-instrument_type = 'niriss'
+observation_files['IRAC'] = 'observations/toi193_spitzer-tess_flux_v2.dat'
+observation_files['TESS'] = './observations/toi193_tess_flux_v3.dat'
+runname_base = 'IRAC_TESS_300_'
+instrument_type = 'IRAC_TESS'
 
 
 
@@ -414,7 +429,14 @@ plt.xlabel('Wavelength [um]', fontsize=14)
 plt.ylabel('Eclipse Depth [ppm]', fontsize=14)
 plt.title('%s\n%s -- $\chi^2 = %1.1f$' % (runname, '-'.join(species), best_chisq))
 plt.minorticks_on()
-plt.ylim(0, 1000) #1e6*np.nanmax(obs+2*eobs))
+if Y_AutoRange:
+    ymax = 1e6*np.nanmax(obs+eobs)+10
+if X_AutoRange and X_ObsRange:
+    plt.xlim(1e4*np.nanmin(wobs)-0.2, 1e4*np.nanmax(wobs)+0.2)
+if X_AutoRange is False:
+    plt.xlim(xmin, xmax)
+#plt.ylim(0, 1000) #1e6*np.nanmax(obs+2*eobs)
+plt.ylim(0, ymax) #1e6*np.nanmax(obs+2*eobs)
 plt.savefig('./%s/%s_spectrum_summary_plot.pdf' % (runname,instrument_type))
 
 fits.writeto('./%s/%s_bestfit_spectrum.fits' % (runname,instrument_type), np.vstack((w, spec)), overwrite=True)
@@ -467,8 +489,10 @@ for atmosphere in [objs4contribution[0]]:
             contribution_fcn = atmosphere.contr_em[:,waveind].mean(1)
             ax4.semilogy(contribution_fcn/np.nanmax(contribution_fcn), pressures, label='%s (%1.1f um)' % (instrument, bandcenters[jj]*1e4), linewidth=1.5)
             
-leg4=ax4.legend(fontsize=12, loc='upper center')
-tools.legc(leg4)
+
+if plot_legend:
+    leg4=ax4.legend(fontsize=12, loc='upper center')
+    tools.legc(leg4)
 ax4.set_yticklabels([])
 fig1.savefig('./%s/%s_2d-contributions_summary_plot.pdf' % (runname,instrument_type))
 fig2.savefig('./%s/%s_thermal_profile_summary_plot.pdf' % (runname,instrument_type))
