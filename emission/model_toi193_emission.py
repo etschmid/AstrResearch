@@ -53,10 +53,10 @@ for T_equ in [2000, 2400, 2800]:
         for gamma in [0.1, 0.2, 0.4, 0.8]:
 
 
-allchis = []
-allTequ = []
-allkappa = []
-allgamma = []
+            allchis = []
+            allTequ = []
+            allkappa = []
+            allgamma = []
 
 for T_equ in [1900, 1950, 2000, 2050, 2100]:
     for kappa_IR in [0.02, .05, 0.1, 0.2]:

@@ -39,20 +39,20 @@ sys.stdout.flush()
 ################################################################################
 
 
-retrieval_name = 'IRAC_TESS_300_%s/IRAC_TESS_'
+retrieval_name = 'niriss_ModelTest_%s/niriss_'
 
 absolute_path = '' # end with forward slash!
 observation_files = {}
-observation_files['IRAC'] = './observations/toi193_spitzer-tess_flux_v2.dat'
-observation_files['TESS'] = './observations/toi193_tess_flux_v3.dat'
+#observation_files['IRAC'] = './observations/toi193_spitzer-tess_flux_v2.dat'
+#observation_files['TESS'] = './observations/toi193_tess_flux_v3.dat'
 #observation_files['nirspec'] = './observations/ltt9779_hih2o_nirspecG395M_noiseless.txt'
-#observation_files['niriss'] = './observations/ltt9779_hih2o_jwst_niriss-2eclipses_4pRT.csv'
+observation_files['niriss'] = './observations/ltt9779_hih2o_jwst_niriss-2eclipses_4pRT.csv'
 #observation_files['nirspec'] = './observations/ltt9779_hih2o_nirspecG395M_1tran.txt'
 #observation_files['HSTWFC3'] = 'toi193_wfc3g141-sim_hiH2O_10bin.dat'
 #observation_files['HSTWFC3'] = 'toi193_wfc3g141-sim_weaker_10bin.dat'
 
 #species = ['H2O',  'CO2','TiO', 'VO','Na','K']
-species = ['H2O',  'CO2', 'CO_all_iso']
+species = ['H2O',  'CO2', 'CO_all_iso', 'CH4', 'NH3', 'H2S', 'H2']
 chemMode = 'free' # abundance of each molecule/atom is a free param.
 #chemMode = 'selfconsistent' # use "poor Man's chemistry" file as free params; 
                             # only free params are [Fe/H] and C/O. 
@@ -79,7 +79,7 @@ if plotting:
 #WLEN = [2.8, 6.0] #[0.54, 5.1]
 #WLEN = [0.8, 2.9]
 #WLEN = [0.8, 6.0]
-WLEN = [0.5, 6.0]
+WLEN = [0.5, 20]
 WLEN_plot = [0.5, 12]
 LOG_G =  3.11 # logg of PLANET, per Jenkins
 R_pl =   4.72*nc.r_earth # per Jenkins
