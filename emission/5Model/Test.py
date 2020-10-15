@@ -80,7 +80,7 @@ plot_select = [1,0,0,0,0]
 if(plot_select[0]==1):
 
     atmosphere.calc_flux(temperature, mass_fractions1, gravity, MMW)
-    #plt.plot(nc.c/atmosphere.freq/1e-4, atmosphere.flux/1e-6, label='1x')
+    #plt.plot(nc.c/atmosphere.freq/1e-4, atmosphere.flux/1e-6, label='1x') ##
     
     plt.plot(temp,press)
     #plt.plot(3.6,482,'ro')
