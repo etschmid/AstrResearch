@@ -16,18 +16,18 @@ import mmr2vmr
 plotting = True
 save_obs = False
 
-plot_legend = True #Plots legend for thermal profile. Will become cluttered if large num of obs points. 
+plot_legend = False #Plots legend for thermal profile. Will become cluttered if large num of obs points. 
 
 ## Spectrum Summary XY Axis ## Automatically set axis limits if true. 
-X_AutoRange = True
+X_AutoRange = False
 Y_AutoRange = False
 
 X_ObsRange = False
 
-xmin = 0      # Define axis limits here if autorange set to false. 
-xmax = 12
+xmin = 0.5      # Define axis limits here if autorange set to false. 
+xmax = 3.1
 ymin = 0
-ymax = 1000
+ymax = 350
 #################################
 
 
@@ -41,10 +41,12 @@ nmc = 100
 #observation_files['nirspec'] = './observations/ltt9779_hih2o_nirspecG395M_noiseless.txt'
 #observation_files['niriss'] = './observations/ltt9779_hih2o_jwst_niriss-2eclipses_4pRT.csv'
 #observation_files['nirspec'] = './observations/ltt9779_hih2o_nirspecG395M_1tran.txt'
-observation_files['IRAC'] = 'observations/toi193_spitzer-tess_flux_v2.dat'
-observation_files['TESS'] = './observations/toi193_tess_flux_v3.dat'
-runname_base = 'IRAC_TESS_300_'
-instrument_type = 'IRAC_TESS'
+#observation_files['IRAC'] = 'observations/toi193_spitzer-tess_flux_v2.dat'
+#observation_files['TESS'] = './observations/toi193_tess_flux_v3.dat'
+observation_files['niriss'] = './observations/NIRISS_SOSS_2transits_for_ES.csv'
+#observation_files['nirspec'] = './observations/NIRSPEC_G395_2transits_for_ES.csv'
+runname_base = 'niriss_JWSTrun_'
+instrument_type = 'niriss_nirspec'
 
 
 
@@ -54,7 +56,8 @@ R_star = 0.949*nc.r_sun # per TIC v8
 T_star = 5443.
 chemMode = 'free' #'selfconsistent' # free
 #species = ['H2O',  'CO2','TiO', 'VO','Na','K'] #['CO_all_iso']
-species = ['H2O',  'CO2', 'CO_all_iso']
+#species = ['H2O',  'CO2', 'CO_all_iso']
+species = ['H2O',  'CO2', 'CO_all_iso', 'CH4', 'NH3', 'H2S']
 
 if chemMode=='free':
     print('free chem')
@@ -501,7 +504,11 @@ fig2.savefig('./%s/%s_thermal_profile_summary_plot.pdf' % (runname,instrument_ty
 # Posterior plots
 ##############################
 prefix = runname + ( '/%s_' %instrument_type)
-parameters = json.load(open(prefix + 'params.json'))
+parameters = json.load(open(prefix + 'params.json')) #----- changed 11-16-2020
+#paramsname = [line.strip() for line in os.popen('ls %s/*params.json' % runname)][0]
+#prefix = paramsname.strip('params.json')
+#parameters = json.load(open(paramsname))
+
 n_params = len(parameters)
 a = pymultinest.Analyzer(n_params = n_params, outputfiles_basename = prefix)
 s = a.get_stats()
